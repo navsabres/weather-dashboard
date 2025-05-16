@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .api-endpoint {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 15px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+            pre, code {
+                font-size: 10pt;
+            }
+            h1 {
+                font-size: 18pt;
+            }
+            h2 {
+                font-size: 16pt;
+            }
+            h3 {
+                font-size: 14pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Dashboard Documentation</h1>
+
+    <h2>Project Overview</h2>
+    <p>
+        The Weather Dashboard is a web application developed as part of the INST 377 course at the University of Maryland. 
+        It allows users to search for weather information by city name, displaying current weather conditions including 
+        temperature, weather description, humidity, and wind speed.
+    </p>
+    <p>
+        The application features a responsive design that works on both desktop and mobile devices, with support for 
+        theme switching between light and dark modes, and temperature unit conversion between Celsius and Fahrenheit.
+    </p>
+
+    <h2>Features</h2>
+    <ul>
+        <li><strong>Search for weather by city name</strong>: Users can enter a city name and get current weather information.</li>
+        <li><strong>Toggle between Celsius and Fahrenheit</strong>: Users can switch between temperature units.</li>
+        <li><strong>Switch between light and dark themes</strong>: The application supports both light and dark modes for better user experience.</li>
+        <li><strong>View search history</strong>: Recent searches are displayed and can be clicked to search again.</li>
+        <li><strong>Persistent user preferences</strong>: User settings like theme and temperature unit preference are saved.</li>
+        <li><strong>Responsive design</strong>: The application works well on all screen sizes.</li>
+    </ul>
+
+    <h2>Project Structure</h2>
+    <pre>
+weather-dashboard-git/
+├── node_modules/
+├── public/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── app.js
+│   ├── about.html
+│   └── index.html
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+├── server.js
+└── vercel.json
+    </pre>
+
+    <h2>Technology Stack</h2>
+    <ul>
+        <li><strong>Frontend</strong>: HTML5, CSS3, JavaScript</li>
+        <li><strong>Backend</strong>: Node.js, Express.js</li>
+        <li><strong>Database</strong>: Supabase</li>
+        <li><strong>Deployment</strong>: Vercel</li>
+        <li><strong>Icons</strong>: Font Awesome</li>
+    </ul>
+
+    <h2>API Endpoints</h2>
+    
+    <div class="api-endpoint">
+        <h3>GET /api/weather-history</h3>
+        <p>Retrieves the 10 most recent weather searches.</p>
+    </div>
+
+    <div class="api-endpoint">
+        <h3>POST /api/weather-history</h3>
+        <p>Saves a new weather search to the history.</p>
+    </div>
+
+    <div class="api-endpoint">
+        <h3>GET /api/user-preferences/:userId</h3>
+        <p>Retrieves user preferences (theme, units, default city).</p>
+    </div>
+
+    <div class="api-endpoint">
+        <h3>PUT /api/user-preferences/:userId</h3>
+        <p>Updates user preferences.</p>
+    </div>
+
+    <h2>Database Schema</h2>
+
+    <h3>weather_searches Table</h3>
+    <ul>
+        <li>id (primary key)</li>
+        <li>city (text)</li>
+        <li>temperature (text)</li>
+        <li>description (text)</li>
+        <li>timestamp (timestamp with time zone, default: now())</li>
+    </ul>
+
+    <h3>user_preferences Table</h3>
+    <ul>
+        <li>id (primary key)</li>
+        <li>user_id (text, unique)</li>
+        <li>units (text, default: 'celsius')</li>
+        <li>theme (text, default: 'light')</li>
+        <li>default_city (text, default: 'New York')</li>
+    </ul>
+
+    <h2>How to Run the Project</h2>
+    <ol>
+        <li>Clone the repository</li>
+        <li>Install dependencies:
+            <pre>npm install</pre>
+        </li>
+        <li>Create a <code>.env</code> file based on <code>.env.example</code> and add your Supabase credentials</li>
+        <li>Start the server:
+            <pre>npm start</pre>
+            or
+            <pre>node server.js</pre>
+        </li>
+        <li>Open your browser and navigate to <code>http://localhost:3001</code></li>
+    </ol>
+
+    <h2>Development Notes</h2>
+    <ul>
+        <li>The application uses a mock weather API in the frontend for demonstration purposes. In a production environment, it would connect to a real weather API like OpenWeatherMap.</li>
+        <li>User IDs are randomly generated for demo purposes. In a production environment, proper authentication would be implemented.</li>
+        <li>The application stores user preferences and search history in a Supabase database.</li>
+    </ul>
+
+    <h2>Future Enhancements</h2>
+    <ul>
+        <li>Integration with a real weather API</li>
+        <li>5-day forecast display</li>
+        <li>Geolocation for automatic city detection</li>
+        <li>User authentication</li>
+        <li>Weather alerts</li>
+        <li>Weather maps visualization</li>
+    </ul>
+</body>
+</html>
